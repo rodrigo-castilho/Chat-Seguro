@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>SecureChat Minimal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='minimal-styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="minimal-container">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1>SecureChat</h1>
+            </div>
+            <div class="user-profile">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span id="username">{{ session.username }}</span>
+            </div>
+        </aside>
+
+        <main class="content">
+            <div class="messages-container" id="messageArea">
+                <div class="empty-state" id="noMessages">
+                    <i class="fas fa-comment-dots"></i>
+                    <p>Seu chat seguro está pronto</p>
+                    <small>As mensagens são criptografadas automaticamente</small>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <textarea id="messageInput" placeholder="Escreva uma mensagem..."></textarea>
+                    <button id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Protegido com AES-256 e CSRF tokens</span>
+                </div>
+            </div>
+        </main>
+
+        <div class="csrf-test-area">
+            <button id="toggleCsrfTest" class="test-toggle">
+                <i class="fas fa-virus"></i>
+                Testes de Segurança
+            </button>
+            <div id="csrf-test-container" class="test-panel">
+                <h3>Verificação CSRF</h3>
+                <div class="test-buttons">
+                    <button id="testCsrfFail" class="test-btn fail-btn">
+                        Testar Falha
+                    </button>
+                    <button id="testCsrfSuccess" class="test-btn success-btn">
+                        Testar Sucesso
+                    </button>
+                </div>
+                <div id="csrfTestResult" class="test-result">
+                    Execute os testes de segurança
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
