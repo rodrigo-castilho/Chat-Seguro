@@ -21,7 +21,7 @@ pip install flask flask-wtf pycryptodome
 2. **Execute o backend:**
 
 ```bash
-python backend.py
+python app.py
 ```
 
 3. **Acesse a aplicação no navegador:**
